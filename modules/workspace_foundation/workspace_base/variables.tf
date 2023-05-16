@@ -15,9 +15,10 @@ variable "cidr_block" {
 variable "region" {
   default = "ap-southeast-2"
 }
-
 variable "catalog_name" {}
 variable "metastore_storage_label" {}
 variable "metastore_name" {}
 variable "metastore_label" {}
 variable "default_metastore_default_catalog_name" {}
+
+
