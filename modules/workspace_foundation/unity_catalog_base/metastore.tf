@@ -16,5 +16,4 @@ resource "databricks_metastore_assignment" "default_metastore" {
   depends_on           = [ databricks_metastore_data_access.metastore_data_access ]
   workspace_id         = var.workspace_id
   metastore_id         = databricks_metastore.metastore.id
-  default_catalog_name = var.default_metastore_default_catalog_name
 }
