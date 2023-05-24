@@ -15,13 +15,13 @@ provider "databricks" {
 
 // initialize provider at workspace level, to create UC resources
 provider "databricks" {
-  alias    = "workspace"
-  host     = module.workspace_unity_catalog.databricks_host
+  alias = "workspace"
+  host  = module.workspace_unity_catalog.databricks_host
   token = module.workspace_unity_catalog.databricks_token
 }
 
 terraform {
-    required_providers {
+  required_providers {
     databricks = {
       source  = "databricks/databricks"
       version = "1.17.0"
