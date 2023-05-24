@@ -1,9 +1,5 @@
 resource "aws_s3_bucket" "metastore" {
   bucket = "${local.prefix}-${var.metastore_storage_label}"
-  acl    = "private"
-  versioning {
-    enabled = false
-  }
   force_destroy = true
   tags = merge(local.tags, {
     Name = "${local.prefix}-${var.metastore_storage_label}"

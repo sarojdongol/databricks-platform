@@ -79,7 +79,6 @@ module "vpc_endpoints" {
 // Properly configure the VPC and subnets for Databricks within your AWS account.
 // See https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/mws_networks
 resource "databricks_mws_networks" "this" {
-  provider           = databricks.mws
   account_id         = var.databricks_account_id
   network_name       = "${local.prefix}-network"
   security_group_ids = [module.vpc.default_security_group_id]

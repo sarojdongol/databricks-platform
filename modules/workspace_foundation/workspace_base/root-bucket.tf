@@ -2,10 +2,6 @@
 // See https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest
 resource "aws_s3_bucket" "root_storage_bucket" {
   bucket = "${local.prefix}-rootbucket"
-  acl    = "private"
-  versioning {
-    enabled = false
-  }
   force_destroy = true
   tags = merge(var.tags, {
     Name = "${local.prefix}-rootbucket"
@@ -37,7 +33,6 @@ resource "aws_s3_bucket_policy" "root_bucket_policy" {
 // Configure the S3 root bucket within your AWS account for new Databricks workspaces.
 // See https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/mws_storage_configurations
 resource "databricks_mws_storage_configurations" "this" {
-  provider                   = databricks.mws
   account_id                 = var.databricks_account_id
   bucket_name                = aws_s3_bucket.root_storage_bucket.bucket
   storage_configuration_name = "${local.prefix}-storage"
