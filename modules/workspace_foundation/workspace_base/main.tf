@@ -1,9 +1,9 @@
-
 terraform {
   required_providers {
     databricks = {
       source  = "databricks/databricks"
       version = "1.17.0"
+      configuration_aliases = [databricks.main, databricks.ws]
     }
     aws = {
       source  = "hashicorp/aws"
@@ -12,6 +12,7 @@ terraform {
     }
   }
 }
+
 resource "random_string" "naming" {
   special = false
   upper   = false
@@ -23,7 +24,13 @@ locals {
   tags   = {}
 }
 
-/* module "uc" {
+provider "databricks" {
+  alias = "test"
+  host = databricks_mws_workspaces.this.workspace_url
+  token = databricks_mws_workspaces.this.token[0].token_value
+}
+
+ module "uc" {
   source = "../unity_catalog_base"
   databricks_account_username = var.databricks_account_username
   databricks_account_password = var.databricks_account_password
@@ -35,4 +42,9 @@ locals {
   aws_account_id = "443582877706"
   catalog_name = var.catalog_name
   workspace_id = databricks_mws_workspaces.this.workspace_id
-} */
+  token = databricks_mws_workspaces.this.token[0].token_value
+  workspace_url = databricks_mws_workspaces.this.workspace_url
+  providers = {
+    databricks.second = databricks.test
+  }
+}

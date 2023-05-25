@@ -7,6 +7,5 @@ output "databricks_workspace_id" {
 }
 
 /* output "databricks_token" {
-  value     = databricks_mws_workspaces.this
-  sensitive = true
-}  */
+  value     = databricks_token.pat.token_value
+} */

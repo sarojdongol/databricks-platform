@@ -10,7 +10,8 @@ module "workspace_unity_catalog" {
   aws_account_id                         = "443582877706"
   catalog_name                           = local.catalog_name
   providers = {
-    databricks = databricks.mws
+    databricks.main = databricks.mws
+    databricks.ws = databricks.workspace
   }
 }
 
@@ -27,7 +28,4 @@ module "workspace_unity_catalog" {
   aws_account_id = "443582877706"
   catalog_name = local.catalog_name
   workspace_id = module.workspace_unity_catalog.databricks_workspace_id
-  providers = {
-    databricks = databricks.workspace
-  }
 } */

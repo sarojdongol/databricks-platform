@@ -33,6 +33,7 @@ resource "aws_s3_bucket_policy" "root_bucket_policy" {
 // Configure the S3 root bucket within your AWS account for new Databricks workspaces.
 // See https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/mws_storage_configurations
 resource "databricks_mws_storage_configurations" "this" {
+  provider = databricks.main
   account_id                 = var.databricks_account_id
   bucket_name                = aws_s3_bucket.root_storage_bucket.bucket
   storage_configuration_name = "${local.prefix}-storage"
