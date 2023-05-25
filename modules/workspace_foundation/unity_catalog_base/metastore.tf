@@ -6,7 +6,7 @@ resource "databricks_metastore" "metastore" {
 }
 
 resource "databricks_metastore_data_access" "metastore_data_access" {
-  depends_on   = [ databricks_metastore.default_metastore ]
+  depends_on   = [ databricks_metastore.metastore ]
   provider = databricks.second
   metastore_id = databricks_metastore.metastore.id
   name         = aws_iam_role.metastore_data_access.name
