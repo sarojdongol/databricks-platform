@@ -6,6 +6,7 @@ output "databricks_workspace_id" {
   value = databricks_mws_workspaces.this.workspace_id
 }
 
-/* output "databricks_token" {
-  value     = databricks_token.pat.token_value
-} */
+output "metastore_id" {
+  value     = module.uc.metastore_id
+  sensitive = true
+} 
